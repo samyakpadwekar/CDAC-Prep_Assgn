@@ -1,3 +1,9 @@
+/*Maintain an array of ten positive numbers. Initially all elements are set to zero (indicating array is empty).
+Write a menu driven program to perform operations like add number, delete number,
+find maximum number (along with its index), find minimum number (along with its index) and sum of numbers.
+While adding number display available indexes and user can select any of them.
+If no index is free, display appropriate message. Also, while deleting number display available indexes along
+with values and user can clear value there (set to zero).*/
 #include<stdio.h>
 
 void Add(int a[])

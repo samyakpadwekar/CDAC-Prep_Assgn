@@ -1,3 +1,8 @@
+/*Implement doubly linked list of bank accounts. 
+Each account has information including id, type, balance and account holder. 
+The account holder details include name, address & contact details. 
+Write a menu-driven program to implement add first, add last, display all (forward), display all (backword), 
+find by account id, find by account holder name, delete all functionalities.*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -30,7 +35,7 @@ struct Node* GetNewNode() {
  printf("Enter Account Id: ");
  scanf("%d",&newNode->acc.id);
  fflush(stdin);
- printf("Enter Account Type(S for Savings,C for Current): ");
+ printf("Enter Account Type(Savings/Current): ");
  gets(newNode->acc.type);
  printf("Enter Account Balance: ");
  scanf("%d",&newNode->acc.bal);
@@ -79,7 +84,7 @@ void Dispf()
  printf("Forward: ");
  while(temp != NULL) {
     printf("Account Id:%d \n",temp->acc.id);
-    printf("Account Type(S for Savings,C for Current):%s \n",temp->acc.type);
+    printf("Account Type:%s \n",temp->acc.type);
     printf("Account Balance:%d \n",temp->acc.bal);
     printf("Account Holder Name:%s \n",temp->acc.hol.name);
     printf("Account Holder Address:%s \n",temp->acc.hol.add);
@@ -100,7 +105,7 @@ void Dispb() {
  printf("Reverse: ");
  while(temp != NULL) {
     printf("Account Id:%d \n",temp->acc.id);
-    printf("Account Type(S for Savings,C for Current):%s \n",temp->acc.type);
+    printf("Account Type:%s \n",temp->acc.type);
     printf("Account Balance:%d \n",temp->acc.bal);
     printf("Account Holder Name:%s \n",temp->acc.hol.name);
     printf("Account Holder Address:%s \n",temp->acc.hol.add);
@@ -189,60 +194,46 @@ void FindByName()
     printf("Id is not present in the list\n");
 }
 
-void DeleteById()
+void DeleteAll()
 {
- int xid;
- printf("Enter Account Id whose info is to be deleted: ");
- scanf("%d",&xid);
-
-  struct Node *current = head;
-
-    //Checks whether the list is empty
- if(head == NULL) {
-  printf("List is empty\n");
-  return;}
-
- if(current->acc.id == xid)
- {
-  current->next->prev = NULL;
-  head=current->next;
-  free(current);
-  return;
- }
-
- current = current->next;
-
- while (current != NULL) {
-  if (current->acc.id == xid) {
-     current->prev->next = current->next;
-     current->next->prev=current->prev;
-     free(current);
-     break;
-  }
-  else
-     current = current->next;
-  }
+    struct Node *temp = head;
+	if(temp==NULL)
+	{
+		printf("\n###LIST IS EMPTY###\n");
+		return ;
+	}
+	struct Node *prevTemp;
+	while(temp!=NULL)
+	{
+		prevTemp = temp;
+		temp=temp->next;
+		free(prevTemp);
+	}
+	head = NULL;
+	printf("\nSuccessfully Deleted All element\n");
 }
+
 int main()
 {
  head = NULL;
  int i;
  int j;
 
- //printf("Press 1 to Continue \nPress 0 to end\n");
+ printf("_____Bank Account Mangement_____\n");
  //scanf("%d",&i);
-
+ printf("\n");
  do
  {
  printf("Enter options between 1-7\n");
- printf("1.Add details from front\n");
- printf("2.Add details from back\n");
- printf("3.Display record from front\n");
- printf("4.Display record from back\n");
- printf("5.Find by id\n");
- printf("6.Find by name\n");
- printf("7.Delete\n");
+ printf("1.Add Account details from front\n");
+ printf("2.Add Account details from back\n");
+ printf("3.Display Account record from front\n");
+ printf("4.Display Account record from back\n");
+ printf("5.Find by Account id\n");
+ printf("6.Find by Account Holder name\n");
+ printf("7.Delete all Accounts\n");
 
+ printf("\nEnter Choice: ");
  scanf("%d",&i);
  switch(i)
  {
@@ -264,7 +255,8 @@ int main()
   case 6: FindByName();
           break;
 
-  case 7: DeleteById();
+
+  case 7: DeleteAll();
           break;
  }
 

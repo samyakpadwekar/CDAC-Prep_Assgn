@@ -1,3 +1,5 @@
+/*2. Simulate string library functions strcpy, strcat, strcmp and strrev. */
+
 #include<stdio.h>
 #include<string.h>
 

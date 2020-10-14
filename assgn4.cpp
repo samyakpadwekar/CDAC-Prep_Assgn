@@ -1,3 +1,6 @@
+/*Create an array of 10 books with details id, name, price. 
+Sort array in descending order of price using merge sort. 
+Also sort array in ascending order of name using library function qsort().*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
